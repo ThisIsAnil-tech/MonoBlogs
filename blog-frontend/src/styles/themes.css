@@ -1,0 +1,23 @@
+/* Light theme */
+[data-theme="light"] {
+  --color-bg: #ffffff;
+  --color-surface: #ffffff;
+  --color-surface-hover: #fafafa;
+  --color-border: #efefef;
+  --color-text-primary: #000000;
+  --color-text-secondary: #737373;
+  --color-accent: #000000;
+  --color-accent-dim: rgba(0, 0, 0, 0.04);
+}
+
+/* Dark theme (default) */
+[data-theme="dark"] {
+  --color-bg: #0a0a0a;
+  --color-surface: #171717;
+  --color-surface-hover: #262626;
+  --color-border: #333333;
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #a3a3a3;
+  --color-accent: #ffffff;
+  --color-accent-dim: rgba(255, 255, 255, 0.1);
+}
