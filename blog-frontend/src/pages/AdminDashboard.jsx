@@ -20,7 +20,7 @@ const AdminDashboard = () => {
   });
   const [loading, setLoading] = useState(true);
   const [notifying, setNotifying] = useState(null);
-  
+
   // Filter state
   const [showFilter, setShowFilter] = useState(false);
   const [showSubscribers, setShowSubscribers] = useState(false);
@@ -79,7 +79,7 @@ const AdminDashboard = () => {
 
     const totalViews = processed.reduce((sum, p) => sum + (p.views?.length || 0), 0);
     const totalLikes = processed.reduce((sum, p) => sum + (p.likes?.length || 0), 0);
-    
+
     setStats({
       totalPosts: processed.length,
       totalViews,
@@ -114,7 +114,7 @@ const AdminDashboard = () => {
       if (res.ok) {
         showToast(data.message || 'Subscribers notified successfully!', 'success');
         // Update local state to reflect sent notification
-        setAllPosts(prev => prev.map(p => 
+        setAllPosts(prev => prev.map(p =>
           p._id === postId ? { ...p, isNotificationSent: true, notificationsSentCount: data.notificationsSentCount } : p
         ));
       } else {
@@ -143,14 +143,14 @@ const AdminDashboard = () => {
           </p>
         </div>
         <div style={{ display: 'flex', gap: '8px' }}>
-          <button 
+          <button
             onClick={() => setShowSubscribers(true)}
             className="btn-secondary"
             style={{ display: 'flex', alignItems: 'center', gap: '8px' }}
           >
             <Users size={16} /> Subscribers
           </button>
-          <button 
+          <button
             onClick={() => setShowFilter(true)}
             className="btn-secondary"
             style={{ display: 'flex', alignItems: 'center', gap: '8px' }}
@@ -158,189 +158,190 @@ const AdminDashboard = () => {
             <Filter size={16} /> Filter
           </button>
         </div>
+      </div>
 
       {/* Stats */}
-      <div style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))',
-        gap: '16px',
-        marginBottom: '32px',
-      }}>
-        {statCards.map((stat, index) => (
-          <div
-            key={index}
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))',
+          gap: '16px',
+          marginBottom: '32px',
+        }}>
+          {statCards.map((stat, index) => (
+            <div
+              key={index}
+              style={{
+                backgroundColor: 'var(--color-surface)',
+                border: '1px solid var(--color-border)',
+                borderRadius: '8px',
+                padding: '20px',
+                textAlign: 'center',
+              }}
+            >
+              <stat.icon size={24} color={stat.color} style={{ marginBottom: '8px' }} />
+              <div style={{ fontSize: '24px', fontWeight: '700' }}>
+                {stat.value.toLocaleString()}
+              </div>
+              <div style={{ fontSize: '12px', color: 'var(--color-text-secondary)' }}>
+                {stat.label}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Quick actions */}
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: '1fr 1fr',
+          gap: '12px',
+          marginBottom: '32px',
+        }}>
+          <Link
+            to="/create"
+            className="btn-primary"
             style={{
-              backgroundColor: 'var(--color-surface)',
-              border: '1px solid var(--color-border)',
-              borderRadius: '8px',
-              padding: '20px',
               textAlign: 'center',
+              padding: '12px',
+              textDecoration: 'none',
             }}
           >
-            <stat.icon size={24} color={stat.color} style={{ marginBottom: '8px' }} />
-            <div style={{ fontSize: '24px', fontWeight: '700' }}>
-              {stat.value.toLocaleString()}
-            </div>
-            <div style={{ fontSize: '12px', color: 'var(--color-text-secondary)' }}>
-              {stat.label}
-            </div>
-          </div>
-        ))}
-      </div>
+            + New Post
+          </Link>
+          <Link
+            to="/"
+            className="btn-secondary"
+            style={{
+              textAlign: 'center',
+              padding: '12px',
+              textDecoration: 'none',
+            }}
+          >
+            View Blog
+          </Link>
+        </div>
 
-      {/* Quick actions */}
-      <div style={{
-        display: 'grid',
-        gridTemplateColumns: '1fr 1fr',
-        gap: '12px',
-        marginBottom: '32px',
-      }}>
-        <Link
-          to="/create"
-          className="btn-primary"
-          style={{
-            textAlign: 'center',
-            padding: '12px',
-            textDecoration: 'none',
-          }}
-        >
-          + New Post
-        </Link>
-        <Link
-          to="/"
-          className="btn-secondary"
-          style={{
-            textAlign: 'center',
-            padding: '12px',
-            textDecoration: 'none',
-          }}
-        >
-          View Blog
-        </Link>
-      </div>
+        {/* Recent posts */}
+        <div style={{
+          backgroundColor: 'var(--color-surface)',
+          border: '1px solid var(--color-border)',
+          borderRadius: '8px',
+          padding: '20px',
+        }}>
+          <h3 style={{ marginBottom: '16px', display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <Clock size={18} />
+            {filters.sortBy === 'newest' ? 'Recent Posts' : 'Top Posts'}
+            {filters.domain && <span style={{ fontSize: '12px', color: 'var(--color-primary)', fontWeight: 'normal' }}>({filters.domain})</span>}
+          </h3>
 
-      {/* Recent posts */}
-      <div style={{
-        backgroundColor: 'var(--color-surface)',
-        border: '1px solid var(--color-border)',
-        borderRadius: '8px',
-        padding: '20px',
-      }}>
-        <h3 style={{ marginBottom: '16px', display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <Clock size={18} />
-          {filters.sortBy === 'newest' ? 'Recent Posts' : 'Top Posts'}
-          {filters.domain && <span style={{ fontSize: '12px', color: 'var(--color-primary)', fontWeight: 'normal' }}>({filters.domain})</span>}
-        </h3>
-        
-        {stats.recentPosts.length === 0 ? (
-          <p style={{ color: 'var(--color-text-secondary)', textAlign: 'center', padding: '20px' }}>
-            No posts yet. Create your first post!
-          </p>
-        ) : (
-          <div>
-            {stats.recentPosts.map((post, index) => (
-              <Link
-                key={post._id}
-                to={`/post/${post.slug || post._id}`}
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '12px',
-                  padding: '12px 0',
-                  borderBottom: index < stats.recentPosts.length - 1 ? '1px solid var(--color-border)' : 'none',
-                  transition: 'opacity 0.2s',
-                }}
-                onMouseEnter={(e) => e.currentTarget.style.opacity = '0.7'}
-                onMouseLeave={(e) => e.currentTarget.style.opacity = '1'}
-              >
-                <img
-                  src={post.imageUrl}
-                  alt={post.caption}
+          {stats.recentPosts.length === 0 ? (
+            <p style={{ color: 'var(--color-text-secondary)', textAlign: 'center', padding: '20px' }}>
+              No posts yet. Create your first post!
+            </p>
+          ) : (
+            <div>
+              {stats.recentPosts.map((post, index) => (
+                <Link
+                  key={post._id}
+                  to={`/post/${post.slug || post._id}`}
                   style={{
-                    width: '50px',
-                    height: '50px',
-                    objectFit: 'cover',
-                    borderRadius: '4px',
-                    flexShrink: 0,
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '12px',
+                    padding: '12px 0',
+                    borderBottom: index < stats.recentPosts.length - 1 ? '1px solid var(--color-border)' : 'none',
+                    transition: 'opacity 0.2s',
                   }}
-                />
-                <div style={{ flex: 1, minWidth: 0 }}>
-                  <div style={{
-                    fontSize: '14px',
-                    whiteSpace: 'nowrap',
-                    overflow: 'hidden',
-                    textOverflow: 'ellipsis',
-                  }}>
-                    {post.caption || 'Untitled'}
+                  onMouseEnter={(e) => e.currentTarget.style.opacity = '0.7'}
+                  onMouseLeave={(e) => e.currentTarget.style.opacity = '1'}
+                >
+                  <img
+                    src={post.imageUrl}
+                    alt={post.caption}
+                    style={{
+                      width: '50px',
+                      height: '50px',
+                      objectFit: 'cover',
+                      borderRadius: '4px',
+                      flexShrink: 0,
+                    }}
+                  />
+                  <div style={{ flex: 1, minWidth: 0 }}>
+                    <div style={{
+                      fontSize: '14px',
+                      whiteSpace: 'nowrap',
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis',
+                    }}>
+                      {post.caption || 'Untitled'}
+                    </div>
+                    <div style={{
+                      fontSize: '12px',
+                      color: 'var(--color-text-secondary)',
+                    }}>
+                      {post.views?.length || 0} views • {post.likes?.length || 0} likes
+                    </div>
+                    {post.isNotificationSent && (
+                      <div style={{ fontSize: '11px', color: 'var(--color-primary)', marginTop: '2px' }}>
+                        ✓ Notified {post.notificationsSentCount || 0} subscribers
+                      </div>
+                    )}
                   </div>
                   <div style={{
                     fontSize: '12px',
                     color: 'var(--color-text-secondary)',
+                    whiteSpace: 'nowrap',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '12px'
                   }}>
-                    {post.views?.length || 0} views • {post.likes?.length || 0} likes
+                    {new Date(post.createdAt).toLocaleDateString()}
+
+                    <button
+                      onClick={(e) => handleNotifyRequest(e, post._id)}
+                      disabled={notifying === post._id}
+                      title="Send Email to Subscribers"
+                      style={{
+                        padding: '6px',
+                        borderRadius: '50%',
+                        backgroundColor: 'var(--color-surface-hover)',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        color: notifying === post._id ? 'var(--color-text-secondary)' : 'var(--color-primary)',
+                        border: 'none',
+                        cursor: notifying === post._id ? 'not-allowed' : 'pointer'
+                      }}
+                    >
+                      <Mail size={16} />
+                    </button>
                   </div>
-                  {post.isNotificationSent && (
-                    <div style={{ fontSize: '11px', color: 'var(--color-primary)', marginTop: '2px' }}>
-                      ✓ Notified {post.notificationsSentCount || 0} subscribers
-                    </div>
-                  )}
-                </div>
-                <div style={{
-                  fontSize: '12px',
-                  color: 'var(--color-text-secondary)',
-                  whiteSpace: 'nowrap',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '12px'
-                }}>
-                  {new Date(post.createdAt).toLocaleDateString()}
-                  
-                  <button
-                    onClick={(e) => handleNotifyRequest(e, post._id)}
-                    disabled={notifying === post._id}
-                    title="Send Email to Subscribers"
-                    style={{
-                      padding: '6px',
-                      borderRadius: '50%',
-                      backgroundColor: 'var(--color-surface-hover)',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      color: notifying === post._id ? 'var(--color-text-secondary)' : 'var(--color-primary)',
-                      border: 'none',
-                      cursor: notifying === post._id ? 'not-allowed' : 'pointer'
-                    }}
-                  >
-                    <Mail size={16} />
-                  </button>
-                </div>
-              </Link>
-            ))}
-          </div>
+                </Link>
+              ))}
+            </div>
+          )}
+        </div>
+
+        {showFilter && (
+          <AdminFilterPopup
+            onClose={() => setShowFilter(false)}
+            onApply={(f) => setFilters(f)}
+            currentFilters={filters}
+          />
         )}
-      </div>
-      
-      {showFilter && (
-        <AdminFilterPopup 
-          onClose={() => setShowFilter(false)} 
-          onApply={(f) => setFilters(f)} 
-          currentFilters={filters} 
+
+        {showSubscribers && (
+          <SubscribersPopup onClose={() => setShowSubscribers(false)} />
+        )}
+
+        <ConfirmDialog
+          isOpen={confirmState.isOpen}
+          title="Notify Subscribers"
+          message="Are you sure you want to email all active subscribers about this post?"
+          onConfirm={confirmNotify}
+          onCancel={() => setConfirmState({ isOpen: false, postId: null })}
+          isLoading={notifying !== null}
         />
-      )}
-
-      {showSubscribers && (
-        <SubscribersPopup onClose={() => setShowSubscribers(false)} />
-      )}
-
-      <ConfirmDialog
-        isOpen={confirmState.isOpen}
-        title="Notify Subscribers"
-        message="Are you sure you want to email all active subscribers about this post?"
-        onConfirm={confirmNotify}
-        onCancel={() => setConfirmState({ isOpen: false, postId: null })}
-        isLoading={notifying !== null}
-      />
-    </div>
+      </div>
   );
 };
 

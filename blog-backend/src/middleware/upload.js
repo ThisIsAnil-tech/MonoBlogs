@@ -1,10 +1,10 @@
-// FILE: blog-backend/src/middleware/upload.js
+
 import multer from 'multer';
 import cloudinary from '../config/cloudinary.js';
 import { config } from '../config/env.js';
 import { logger } from '../config/logger.js';
 
-// ✅ FIX: Import CloudinaryStorage correctly for CommonJS module
+
 import pkg from 'multer-storage-cloudinary';
 const { CloudinaryStorage } = pkg;
 
@@ -31,7 +31,7 @@ const fileFilter = (req, file, cb) => {
 const upload = multer({
   storage,
   limits: {
-    fileSize: 5 * 1024 * 1024, // 5MB limit
+    fileSize: 5 * 1024 * 1024, 
   },
   fileFilter,
 });

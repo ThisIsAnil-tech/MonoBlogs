@@ -4,7 +4,7 @@ import { logger } from '../config/logger.js';
 class CacheService {
   constructor() {
     this.cache = new NodeCache({
-      stdTTL: 300, // 5 minutes default
+      stdTTL: 300, 
       checkperiod: 60,
     });
   }

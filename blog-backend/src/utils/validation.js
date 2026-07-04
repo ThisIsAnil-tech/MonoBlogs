@@ -1,7 +1,7 @@
-// FILE: blog-backend/src/utils/validation.js
+
 import { body, param, query } from 'express-validator';
 
-// Common validators
+
 export const validateId = param('id')
   .isMongoId()
   .withMessage('Invalid ID format');
@@ -18,7 +18,7 @@ export const validateLimit = query('limit')
   .withMessage('Limit must be between 1 and 100')
   .toInt();
 
-// User validation
+
 export const validateUsername = (username) => {
   return username && username.length >= 3 && username.length <= 30;
 };
@@ -32,7 +32,7 @@ export const validatePassword = (password) => {
   return password && password.length >= 6;
 };
 
-// Post validation
+
 export const validateCaption = (caption) => {
   return caption.length <= 2200;
 };
@@ -47,12 +47,12 @@ export const validateTags = (tags) => {
   return tagsArray.every(tag => tag.length > 0 && tag.length <= 30);
 };
 
-// Comment validation
+
 export const validateComment = (comment) => {
   return comment && comment.length >= 1 && comment.length <= 1000;
 };
 
-// Validation middleware builders
+
 export const postValidationRules = () => [
   body('caption')
     .optional()
@@ -93,7 +93,7 @@ export const loginValidationRules = () => [
     .withMessage('Invalid email format'),
 ];
 
-// Utility validation functions
+
 export const isValidMongoId = (id) => {
   return /^[0-9a-fA-F]{24}$/.test(id);
 };
@@ -116,8 +116,8 @@ export const sanitizeInput = (input) => {
   if (typeof input !== 'string') return input;
   return input
     .trim()
-    .replace(/[<>]/g, '') // Remove HTML tags
-    .replace(/\s+/g, ' '); // Remove extra spaces
+    .replace(/[<>]/g, '') 
+    .replace(/\s+/g, ' '); 
 };
 
 export const sanitizeSlug = (slug) => {
@@ -131,7 +131,7 @@ export const sanitizeSlug = (slug) => {
     .replace(/-+$/, '');
 };
 
-// Check if string contains profanity (simple example)
+
 export const containsProfanity = (text, profanityList = []) => {
   if (!text || profanityList.length === 0) return false;
   const lowerText = text.toLowerCase();

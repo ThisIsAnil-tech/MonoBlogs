@@ -1,4 +1,4 @@
-// FILE: blog-backend/src/config/db.js
+
 import mongoose from 'mongoose';
 import { logger } from './logger.js';
 
@@ -10,11 +10,11 @@ export const connectDB = async () => {
     });
     logger.info(`MongoDB Connected: ${conn.connection.host}`);
     
-    // Create indexes - wrap in try/catch to handle collection not existing
+    
     try {
       const db = mongoose.connection.db;
       
-      // Check if collections exist before creating indexes
+      
       const collections = await db.listCollections().toArray();
       const collectionNames = collections.map(c => c.name);
       
@@ -36,7 +36,7 @@ export const connectDB = async () => {
       }
     } catch (indexError) {
       logger.warn(`Index creation warning: ${indexError.message}`);
-      // Continue even if indexes fail - they'll be created when collections are created
+      
     }
   } catch (error) {
     logger.error(`MongoDB Error: ${error.message}`);

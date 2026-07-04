@@ -7,11 +7,11 @@ export const login = async (req, res) => {
   try {
     const { password, email } = req.body;
     
-    // Find user by email or create admin if first login
+    
     let user = await User.findOne({ email: email || config.adminEmail });
     
     if (!user) {
-      // First time setup - create admin user
+      
       user = new User({
         username: 'ThisIsAnil-Tech',
         email: config.adminEmail,
@@ -21,13 +21,13 @@ export const login = async (req, res) => {
       await user.save();
     }
 
-    // Check password
+    
     const isValid = await user.comparePassword(password);
     if (!isValid) {
       return res.status(401).json({ message: 'Invalid credentials' });
     }
 
-    // Update last login
+    
     user.lastLogin = new Date();
     await user.save();
 

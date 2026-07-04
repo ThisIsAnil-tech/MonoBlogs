@@ -1,4 +1,4 @@
-// FILE: blog-backend/src/routes/postRoutes.js
+
 import express from 'express';
 import {
   getPosts,
@@ -28,7 +28,7 @@ router.post(
   notifySubscribers
 );
 
-// Public routes
+
 router.get('/', apiLimiter, getPosts);
 router.get('/domains', getDomains);
 router.get('/tags', getTags);
@@ -38,7 +38,7 @@ router.get('/:id/engagement', getPostEngagement);
 router.post('/:id/share', sharePost);
 router.post('/:id/like', apiLimiter, toggleLike);
 
-// Protected routes
+
 router.post(
   '/',
   protect,

@@ -132,7 +132,7 @@ const CreatePost = () => {
       </div>
 
       <form onSubmit={handleSubmit}>
-        {/* Image upload area */}
+        
         <div style={{ 
           display: 'flex', 
           overflowX: 'auto', 
@@ -211,7 +211,7 @@ const CreatePost = () => {
           onChange={handleFileChange}
         />
 
-        {/* Music Section */}
+        
         <div style={{ padding: '0 20px', marginTop: '16px' }}>
           {music ? (
             <div style={{
@@ -258,7 +258,7 @@ const CreatePost = () => {
           />
         )}
 
-        {/* Form fields */}
+        
         <div style={{ padding: '20px' }}>
           <div style={{ marginBottom: '16px' }}>
             <label style={{ display: 'block', fontSize: '13px', fontWeight: '500', marginBottom: '4px', color: 'var(--color-text-secondary)' }}>

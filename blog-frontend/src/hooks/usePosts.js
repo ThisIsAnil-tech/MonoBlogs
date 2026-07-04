@@ -1,4 +1,4 @@
-// FILE: blog-frontend/src/hooks/usePosts.js
+
 import { useState, useEffect, useCallback } from 'react';
 import { useToast } from '../context/ToastContext';
 import postService from '../services/postService';

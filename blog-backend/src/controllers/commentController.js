@@ -21,7 +21,7 @@ export const getComments = async (req, res) => {
         Comment.countDocuments({ postId, isApproved: true, parentId: null }),
       ]);
       
-      // Get replies for each comment
+      
       const commentsWithReplies = await Promise.all(items.map(async (comment) => {
         const replies = await Comment.find({ 
           parentId: comment._id, 
@@ -61,7 +61,7 @@ export const createComment = async (req, res) => {
       return res.status(404).json({ message: 'Post not found' });
     }
     
-    // Check if authenticated, otherwise create anonymous comment
+    
     const author = req.user ? req.user._id : null;
     const finalAuthorName = req.user ? req.user.username : (authorName || 'Guest');
     
@@ -96,7 +96,7 @@ export const deleteComment = async (req, res) => {
       return res.status(404).json({ message: 'Comment not found' });
     }
     
-    // Check if user is author or admin
+    
     if (comment.author.toString() !== req.user._id.toString() && req.user.role !== 'admin') {
       return res.status(403).json({ message: 'Not authorized to delete this comment' });
     }
@@ -120,9 +120,9 @@ export const toggleCommentLike = async (req, res) => {
       return res.status(404).json({ message: 'Comment not found' });
     }
     
-    // Get client IP address
+    
     const clientIp = req.headers['x-forwarded-for'] || req.socket.remoteAddress || 'unknown';
-    // Use an anonymousId from body if provided, otherwise fallback to IP
+    
     const trackingId = req.body.anonymousId || clientIp;
     
     const likeIndex = comment.likes.indexOf(trackingId);

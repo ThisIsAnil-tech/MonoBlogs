@@ -1,4 +1,4 @@
-// FILE: blog-frontend/src/components/comments/CommentList.jsx
+
 import React, { useState, useEffect } from 'react';
 import { formatDistanceToNow } from 'date-fns';
 import { Heart, Reply, Trash2 } from 'lucide-react';

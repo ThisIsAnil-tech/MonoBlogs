@@ -1,4 +1,4 @@
-// FILE: blog-frontend/src/hooks/useToast.js
+
 import { useContext } from 'react';
 import { ToastContext } from '../context/ToastContext';
 

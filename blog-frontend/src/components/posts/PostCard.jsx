@@ -1,4 +1,4 @@
-// FILE: blog-frontend/src/components/posts/PostCard.jsx
+
 import React, { useState, useRef, useEffect } from 'react';
 import { formatDistanceToNow } from 'date-fns';
 import { Heart, MessageCircle, Eye, MoreVertical, Edit, Trash2, Share2, Send, Volume2, VolumeX, Music } from 'lucide-react';
@@ -33,18 +33,18 @@ const PostCard = ({ post, onDelete, onLike }) => {
     
     const audio = audioRef.current;
     
-    // Set initial start time when loaded
+    
     audio.addEventListener('loadedmetadata', () => {
       if (post.music.startTime) {
         audio.currentTime = post.music.startTime;
       }
     });
 
-    // Handle end time
+    
     const handleTimeUpdate = () => {
       if (post.music.endTime && audio.currentTime >= post.music.endTime) {
         audio.pause();
-        // Reset to start time for replay
+        
         audio.currentTime = post.music.startTime || 0;
       }
     };
@@ -136,7 +136,7 @@ const PostCard = ({ post, onDelete, onLike }) => {
         marginBottom: '24px',
         overflow: 'hidden',
       }}>
-        {/* Header */}
+        
         <div style={{
           padding: '12px 16px',
           display: 'flex',
@@ -243,7 +243,7 @@ const PostCard = ({ post, onDelete, onLike }) => {
           </div>
         </div>
 
-        {/* Images Carousel */}
+        
         <div style={{ position: 'relative', width: '100%', aspectRatio: '1/1', backgroundColor: 'var(--color-surface)' }}>
           <div 
             onScroll={handleScroll}
@@ -253,11 +253,11 @@ const PostCard = ({ post, onDelete, onLike }) => {
               scrollSnapType: 'x mandatory',
               width: '100%',
               height: '100%',
-              scrollbarWidth: 'none', /* Firefox */
-              msOverflowStyle: 'none',  /* IE and Edge */
+              scrollbarWidth: 'none', 
+              msOverflowStyle: 'none',  
             }}
-            // To hide scrollbar in Webkit browsers, we add a quick inline style injection or rely on external css.
-            // For simplicity, horizontal scroll without visible bar:
+            
+            
           >
             <style>{`div::-webkit-scrollbar { display: none; }`}</style>
             {(post.images && post.images.length > 0) ? (
@@ -287,7 +287,7 @@ const PostCard = ({ post, onDelete, onLike }) => {
             )}
           </div>
           
-          {/* Page Indicators */}
+          
           {(post.images && post.images.length > 1) && (
             <div style={{
               position: 'absolute',
@@ -310,7 +310,7 @@ const PostCard = ({ post, onDelete, onLike }) => {
             </div>
           )}
           
-          {/* Mute/Unmute Logo */}
+          
           {post.music && (
             <button
               onClick={() => setIsMuted(!isMuted)}
@@ -339,7 +339,7 @@ const PostCard = ({ post, onDelete, onLike }) => {
           )}
         </div>
 
-        {/* Music Ticker & Audio */}
+        
         {post.music && (
           <div style={{ padding: '12px 16px 4px', display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--color-text-secondary)', fontSize: '13px' }}>
             <Music size={14} />
@@ -350,7 +350,7 @@ const PostCard = ({ post, onDelete, onLike }) => {
           </div>
         )}
 
-        {/* Actions - Instagram style */}
+        
         <div style={{
           padding: '8px 16px',
           display: 'flex',
@@ -413,7 +413,7 @@ const PostCard = ({ post, onDelete, onLike }) => {
           </button>
         </div>
 
-        {/* Engagement stats */}
+        
         <div style={{ padding: '8px 16px 4px' }}>
           <div style={{
             display: 'flex',
@@ -435,7 +435,7 @@ const PostCard = ({ post, onDelete, onLike }) => {
           </div>
         </div>
 
-        {/* Caption */}
+        
         <div style={{ padding: '0 16px 12px' }}>
           {post.domain && (
             <Link 
@@ -455,7 +455,7 @@ const PostCard = ({ post, onDelete, onLike }) => {
           </span>
         </div>
 
-        {/* Tags */}
+        
         {post.tags && post.tags.length > 0 && (
           <div style={{ padding: '0 16px 12px', display: 'flex', flexWrap: 'wrap', gap: '4px' }}>
             {post.tags.map(tag => (
@@ -476,7 +476,7 @@ const PostCard = ({ post, onDelete, onLike }) => {
           </div>
         )}
 
-        {/* Share popup */}
+        
         {showSharePopup && (
           <div style={{
             padding: '12px 16px',

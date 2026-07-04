@@ -1,4 +1,4 @@
-// FILE: blog-frontend/src/components/posts/PostDetail.jsx
+
 import React, { useState, useRef, useEffect } from 'react';
 import { formatDistanceToNow, format } from 'date-fns';
 import { Heart, MessageCircle, Eye, ArrowLeft, Calendar, Hash, Share2, Send, Volume2, VolumeX, Music } from 'lucide-react';
@@ -29,14 +29,14 @@ const PostDetail = ({ post, onBack }) => {
     
     const audio = audioRef.current;
     
-    // Set initial start time when loaded
+    
     audio.addEventListener('loadedmetadata', () => {
       if (post.music.startTime) {
         audio.currentTime = post.music.startTime;
       }
     });
 
-    // Handle end time
+    
     const handleTimeUpdate = () => {
       if (post.music.endTime && audio.currentTime >= post.music.endTime) {
         audio.pause();
@@ -146,7 +146,7 @@ const PostDetail = ({ post, onBack }) => {
         overflow: 'hidden',
         marginBottom: '24px',
       }}>
-        {/* Header */}
+        
         <div style={{
           padding: '16px 20px',
           borderBottom: '1px solid var(--color-border)',
@@ -217,7 +217,7 @@ const PostDetail = ({ post, onBack }) => {
           )}
         </div>
 
-        {/* Images Carousel */}
+        
         <div style={{ position: 'relative', width: '100%', backgroundColor: 'var(--color-surface)' }}>
           <div 
             onScroll={handleScroll}
@@ -254,7 +254,7 @@ const PostDetail = ({ post, onBack }) => {
             )}
           </div>
           
-          {/* Page Indicators */}
+          
           {(post.images && post.images.length > 1) && (
             <div style={{
               position: 'absolute',
@@ -277,7 +277,7 @@ const PostDetail = ({ post, onBack }) => {
             </div>
           )}
           
-          {/* Mute/Unmute Logo */}
+          
           {post.music && (
             <button
               onClick={() => setIsMuted(!isMuted)}
@@ -306,7 +306,7 @@ const PostDetail = ({ post, onBack }) => {
           )}
         </div>
         
-        {/* Music Ticker & Audio */}
+        
         {post.music && (
           <div style={{ padding: '16px 20px 4px', display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--color-text-secondary)', fontSize: '14px' }}>
             <Music size={16} />
@@ -317,7 +317,7 @@ const PostDetail = ({ post, onBack }) => {
           </div>
         )}
 
-        {/* Caption and tags */}
+        
         {post.caption && (
           <div style={{ padding: '16px 20px', borderBottom: '1px solid var(--color-border)' }}>
             <p style={{ fontSize: '15px', lineHeight: '1.7', whiteSpace: 'pre-wrap' }}>
@@ -349,7 +349,7 @@ const PostDetail = ({ post, onBack }) => {
           </div>
         )}
 
-        {/* Actions */}
+        
         <div style={{
           padding: '12px 20px',
           display: 'flex',
@@ -413,7 +413,7 @@ const PostDetail = ({ post, onBack }) => {
           </div>
         </div>
 
-        {/* Edit/Delete actions for author */}
+        
         {(isAuthor || isAdmin) && (
           <div style={{
             padding: '12px 20px',
@@ -438,7 +438,7 @@ const PostDetail = ({ post, onBack }) => {
         postTitle={post.caption}
       />
 
-      {/* Comments section */}
+      
       <CommentList postId={post._id} onCommentCountUpdate={setCommentCount} />
     </div>
   );

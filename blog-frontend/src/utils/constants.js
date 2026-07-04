@@ -5,7 +5,7 @@ export const POST_LIMITS = {
   MAX_CAPTION_LENGTH: 2200,
   MAX_DOMAIN_LENGTH: 100,
   MAX_TAGS: 10,
-  MAX_IMAGE_SIZE: 5 * 1024 * 1024, // 5MB
+  MAX_IMAGE_SIZE: 5 * 1024 * 1024, 
 };
 
 export const ROUTES = {

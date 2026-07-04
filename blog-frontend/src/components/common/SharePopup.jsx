@@ -76,7 +76,7 @@ const SharePopup = ({ isOpen, onClose, postUrl, postTitle }) => {
         </div>
 
         <div style={{ padding: '24px' }}>
-          {/* Social Share Buttons */}
+          
           <div style={{ display: 'flex', justifyContent: 'center', gap: '24px', marginBottom: '32px' }}>
             {shareLinks.map((platform) => (
               <a
@@ -113,7 +113,7 @@ const SharePopup = ({ isOpen, onClose, postUrl, postTitle }) => {
             ))}
           </div>
 
-          {/* Copy Link Section */}
+          
           <div style={{
             display: 'flex',
             alignItems: 'center',

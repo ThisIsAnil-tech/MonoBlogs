@@ -64,7 +64,7 @@ const AdminFilterPopup = ({ onClose, onApply, currentFilters }) => {
 
         <form onSubmit={handleApply} style={{ padding: '20px' }}>
 
-          {/* Domain Filter */}
+          
           <div style={{ marginBottom: '20px' }}>
             <label style={{ display: 'block', fontSize: '13px', fontWeight: '500', marginBottom: '6px' }}>Filter by Domain (Optional)</label>
             <select
@@ -79,7 +79,7 @@ const AdminFilterPopup = ({ onClose, onApply, currentFilters }) => {
             </select>
           </div>
 
-          {/* Notification Filter */}
+          
           <div style={{ marginBottom: '20px' }}>
             <label style={{ display: 'block', fontSize: '13px', fontWeight: '500', marginBottom: '6px' }}>Filter by Notification Sent</label>
             <select
@@ -94,7 +94,7 @@ const AdminFilterPopup = ({ onClose, onApply, currentFilters }) => {
             </select>
           </div>
 
-          {/* Sort By */}
+          
           <div style={{ marginBottom: '24px' }}>
             <label style={{ display: 'block', fontSize: '13px', fontWeight: '500', marginBottom: '6px' }}>Sort Analytics & Posts By</label>
             <select

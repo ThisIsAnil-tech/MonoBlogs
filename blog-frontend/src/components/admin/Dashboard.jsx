@@ -1,4 +1,4 @@
-// FILE: blog-frontend/src/components/admin/Dashboard.jsx
+
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Image, Eye, TrendingUp, Clock, Users, Share2, Heart, Calendar, BarChart3 } from 'lucide-react';
@@ -31,13 +31,13 @@ const Dashboard = () => {
       const response = await postService.getPosts({ limit: 100 });
       const allPosts = response.posts || [];
       
-      // Calculate totals
+      
       const totalViews = allPosts.reduce((sum, p) => sum + (p.views || 0), 0);
       const totalLikes = allPosts.reduce((sum, p) => sum + (p.likes?.length || 0), 0);
       const totalShares = allPosts.reduce((sum, p) => sum + (p.shares || 0), 0);
       const totalComments = allPosts.reduce((sum, p) => sum + (p.commentCount || 0), 0);
       
-      // Sort for top posts
+      
       const sortedByEngagement = [...allPosts].sort((a, b) => 
         ((b.likes?.length || 0) + (b.shares || 0) + (b.commentCount || 0)) -
         ((a.likes?.length || 0) + (a.shares || 0) + (a.commentCount || 0))
@@ -78,7 +78,7 @@ const Dashboard = () => {
 
   return (
     <div className="fade-in" style={{ maxWidth: '600px', margin: '0 auto' }}>
-      {/* Welcome Header */}
+      
       <div style={{ marginBottom: '32px' }}>
         <h1 style={{ fontSize: '28px', letterSpacing: '-0.5px' }}>
           Welcome back, {user?.username || 'Admin'} 👋
@@ -88,7 +88,7 @@ const Dashboard = () => {
         </p>
       </div>
 
-      {/* Quick Stats */}
+      
       <div style={{
         display: 'grid',
         gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))',
@@ -117,7 +117,7 @@ const Dashboard = () => {
         ))}
       </div>
 
-      {/* Engagement Overview */}
+      
       <div style={{
         backgroundColor: 'var(--color-surface)',
         border: '1px solid var(--color-border)',
@@ -170,7 +170,7 @@ const Dashboard = () => {
         </div>
       </div>
 
-      {/* Quick Actions */}
+      
       <div style={{
         display: 'grid',
         gridTemplateColumns: '1fr 1fr',
@@ -205,7 +205,7 @@ const Dashboard = () => {
         </Link>
       </div>
 
-      {/* Recent Posts */}
+      
       <div style={{
         backgroundColor: 'var(--color-surface)',
         border: '1px solid var(--color-border)',
@@ -284,7 +284,7 @@ const Dashboard = () => {
         )}
       </div>
 
-      {/* Top Performing Posts */}
+      
       {stats.topPosts.length > 0 && (
         <div style={{
           backgroundColor: 'var(--color-surface)',

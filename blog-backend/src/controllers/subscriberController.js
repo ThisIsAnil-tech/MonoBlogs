@@ -9,7 +9,7 @@ export const subscribe = async (req, res) => {
       return res.status(400).json({ message: 'Username and email are required' });
     }
 
-    // Check if email already exists
+    
     const existingSubscriber = await Subscriber.findOne({ email });
     if (existingSubscriber) {
       if (!existingSubscriber.isActive) {

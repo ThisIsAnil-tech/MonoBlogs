@@ -1,4 +1,4 @@
-// FILE: blog-backend/src/models/Comment.js
+
 import mongoose from 'mongoose';
 
 const commentSchema = new mongoose.Schema({
@@ -38,7 +38,7 @@ const commentSchema = new mongoose.Schema({
   timestamps: true,
 });
 
-// Update post comment count on save
+
 commentSchema.post('save', async function() {
   const Post = mongoose.model('Post');
   const post = await Post.findById(this.postId);
@@ -47,7 +47,7 @@ commentSchema.post('save', async function() {
   }
 });
 
-// Update post comment count on delete
+
 commentSchema.post('deleteOne', { document: true, query: false }, async function() {
   const Post = mongoose.model('Post');
   const post = await Post.findById(this.postId);

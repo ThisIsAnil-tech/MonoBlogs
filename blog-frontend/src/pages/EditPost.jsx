@@ -113,7 +113,7 @@ const EditPost = () => {
       </div>
 
       <form onSubmit={handleSubmit}>
-        {/* Image upload area */}
+        
         {!preview ? (
           <div 
             style={{ 
@@ -175,7 +175,7 @@ const EditPost = () => {
           onChange={handleFileChange}
         />
 
-        {/* Form fields */}
+        
         <div style={{ padding: '20px' }}>
           <div style={{ marginBottom: '16px' }}>
             <label style={{ display: 'block', fontSize: '13px', fontWeight: '500', marginBottom: '4px', color: 'var(--color-text-secondary)' }}>

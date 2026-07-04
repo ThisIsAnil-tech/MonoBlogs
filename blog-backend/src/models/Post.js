@@ -1,4 +1,4 @@
-// FILE: blog-backend/src/models/Post.js
+
 import mongoose from 'mongoose';
 import slugify from 'slugify';
 
@@ -45,13 +45,13 @@ const postSchema = new mongoose.Schema({
     required: true,
   },
   views: [{
-    type: String, // Store IP addresses or generated IDs
+    type: String, 
   }],
   likes: [{
-    type: String, // Store IP addresses instead of User ObjectIds
+    type: String, 
   }],
   shares: [{
-    type: String, // Store IP addresses
+    type: String, 
   }],
   commentCount: {
     type: Number,
@@ -81,7 +81,7 @@ const postSchema = new mongoose.Schema({
   timestamps: true,
 });
 
-// Update comment count
+
 postSchema.methods.updateCommentCount = async function() {
   const Comment = mongoose.model('Comment');
   const count = await Comment.countDocuments({ 

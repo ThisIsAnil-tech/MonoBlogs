@@ -4,18 +4,18 @@ export const errorHandler = (err, req, res, next) => {
   logger.error(`Error: ${err.message}`);
   logger.error(err.stack);
 
-  // Multer error handling
+  
   if (err.code === 'LIMIT_FILE_SIZE') {
     return res.status(400).json({ message: 'File too large. Maximum size is 5MB.' });
   }
 
-  // Mongoose validation error
+  
   if (err.name === 'ValidationError') {
     const errors = Object.values(err.errors).map(e => e.message);
     return res.status(400).json({ message: 'Validation Error', errors });
   }
 
-  // Mongoose duplicate key error
+  
   if (err.code === 11000) {
     const field = Object.keys(err.keyPattern)[0];
     return res.status(400).json({ message: `${field} already exists` });

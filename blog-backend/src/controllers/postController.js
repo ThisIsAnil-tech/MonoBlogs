@@ -1,4 +1,4 @@
-// FILE: blog-backend/src/controllers/postController.js
+
 import Post from '../models/Post.js';
 import { logger } from '../config/logger.js';
 import cacheService from '../services/cacheService.js';
@@ -92,7 +92,7 @@ export const getPosts = async (req, res) => {
         Post.countDocuments(filter),
       ]);
       
-      // Add engagement data
+      
       const enrichedItems = items.map(post => ({
         ...post.toObject(),
         engagement: {
@@ -330,9 +330,9 @@ export const toggleLike = async (req, res) => {
       return res.status(404).json({ message: 'Post not found' });
     }
     
-    // Get client IP address
+    
     const clientIp = req.headers['x-forwarded-for'] || req.socket.remoteAddress || 'unknown';
-    // Use an anonymousId from body if provided, otherwise fallback to IP
+    
     const trackingId = req.body.anonymousId || clientIp;
     
     const likeIndex = post.likes.indexOf(trackingId);
@@ -351,7 +351,7 @@ export const toggleLike = async (req, res) => {
   }
 };
 
-// ✅ NEW: Share a post
+
 export const sharePost = async (req, res) => {
   try {
     const { id } = req.params;
@@ -381,7 +381,7 @@ export const sharePost = async (req, res) => {
   }
 };
 
-// ✅ NEW: Get post engagement stats (Instagram-style)
+
 export const getPostEngagement = async (req, res) => {
   try {
     const { id } = req.params;

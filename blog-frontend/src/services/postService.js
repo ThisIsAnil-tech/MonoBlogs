@@ -1,4 +1,4 @@
-// FILE: blog-frontend/src/services/postService.js
+
 import api from './api';
 
 const postService = {

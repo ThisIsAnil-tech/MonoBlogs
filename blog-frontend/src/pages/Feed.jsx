@@ -70,7 +70,7 @@ const Feed = () => {
 
   return (
     <div style={{ maxWidth: '470px', margin: '0 auto' }}>
-      {/* Filter info */}
+      
       {(domain || tag) && (
         <div style={{
           padding: '12px 16px',
